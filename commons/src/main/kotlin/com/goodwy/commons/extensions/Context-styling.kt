@@ -1,16 +1,16 @@
 package com.goodwy.commons.extensions
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
 import android.content.Context
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Color
 import android.view.ViewGroup
 import androidx.loader.content.CursorLoader
 import com.goodwy.commons.R
-import com.goodwy.commons.helpers.MyContentProvider
+import com.goodwy.commons.helpers.*
 import com.goodwy.commons.helpers.MyContentProvider.GLOBAL_THEME_SYSTEM
-import com.goodwy.commons.helpers.ensureBackgroundThread
-import com.goodwy.commons.helpers.isSPlus
 import com.goodwy.commons.models.GlobalConfig
 import com.goodwy.commons.models.isGlobalThemingEnabled
 import com.goodwy.commons.views.*
@@ -132,6 +132,7 @@ fun Context.syncGlobalConfig(callback: (() -> Unit)? = null) {
 
                         if (baseConfig.appIconColor != it.appIconColor) {
                             baseConfig.appIconColor = it.appIconColor
+                            checkAppIconColor()
                         }
                     }
                 }
@@ -179,6 +180,35 @@ fun Context.getGlobalConfig(cursorLoader: CursorLoader): GlobalConfig? {
     return null
 }
 
+fun Context.checkAppIconColor() {
+    val appId = baseConfig.appId
+    if (appId.isNotEmpty() && baseConfig.lastIconColor != baseConfig.appIconColor) {
+        getAppIconColors().forEachIndexed { index, color ->
+            toggleAppIconColor(appId, index, color, false)
+        }
+
+        getAppIconColors().forEachIndexed { index, color ->
+            if (baseConfig.appIconColor == color) {
+                toggleAppIconColor(appId, index, color, true)
+            }
+        }
+    }
+}
+
+fun Context.toggleAppIconColor(appId: String, colorIndex: Int, color: Int, enable: Boolean) {
+    val className = "${appId.removeSuffix(".debug")}.activities.SplashActivity${appIconColorStrings[colorIndex]}"
+    val state = if (enable) PackageManager.COMPONENT_ENABLED_STATE_ENABLED else PackageManager.COMPONENT_ENABLED_STATE_DISABLED
+    try {
+        packageManager.setComponentEnabledSetting(ComponentName(appId, className), state, PackageManager.DONT_KILL_APP)
+        if (enable) {
+            baseConfig.lastIconColor = color
+        }
+    } catch (e: Exception) {
+//        showErrorToast(e)
+    }
+}
+
+fun Context.getAppIconColors() = resources.getIntArray(R.array.md_app_icon_colors).toCollection(ArrayList())
 
 @SuppressLint("NewApi")
 fun Context.getBottomNavigationBackgroundColor(): Int {
