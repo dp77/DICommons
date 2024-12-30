@@ -1,16 +1,16 @@
 package com.goodwy.commons.extensions
 
 import android.annotation.SuppressLint
-import android.content.ComponentName
 import android.content.Context
-import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Color
 import android.view.ViewGroup
 import androidx.loader.content.CursorLoader
 import com.goodwy.commons.R
-import com.goodwy.commons.helpers.*
+import com.goodwy.commons.helpers.MyContentProvider
 import com.goodwy.commons.helpers.MyContentProvider.GLOBAL_THEME_SYSTEM
+import com.goodwy.commons.helpers.ensureBackgroundThread
+import com.goodwy.commons.helpers.isSPlus
 import com.goodwy.commons.models.GlobalConfig
 import com.goodwy.commons.models.isGlobalThemingEnabled
 import com.goodwy.commons.views.*
@@ -132,7 +132,6 @@ fun Context.syncGlobalConfig(callback: (() -> Unit)? = null) {
 
                         if (baseConfig.appIconColor != it.appIconColor) {
                             baseConfig.appIconColor = it.appIconColor
-                            checkAppIconColor()
                         }
                     }
                 }
