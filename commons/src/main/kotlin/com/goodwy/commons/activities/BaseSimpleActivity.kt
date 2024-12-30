@@ -288,20 +288,20 @@ abstract class BaseSimpleActivity : AppCompatActivity() {
     }
 
     fun animateTopBarColors(colorFrom: Int, colorTo: Int) {
-//        if (toolbar == null) {
-//            return
-//        }
-//
-//        materialScrollColorAnimation?.end()
-//        materialScrollColorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
-//        materialScrollColorAnimation!!.addUpdateListener { animator ->
-//            val color = animator.animatedValue as Int
-//            if (toolbar != null) {
-//                updateTopBarColors(toolbar!!, color)
-//            }
-//        }
-//
-//        materialScrollColorAnimation!!.start()
+        if (toolbar == null) {
+            return
+        }
+
+        materialScrollColorAnimation?.end()
+        materialScrollColorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
+        materialScrollColorAnimation!!.addUpdateListener { animator ->
+            val color = animator.animatedValue as Int
+            if (toolbar != null) {
+                updateTopBarColors(toolbar!!, color)
+            }
+        }
+
+        materialScrollColorAnimation!!.start()
     }
 
     fun animateMySearchMenuColors(colorFrom: Int, colorTo: Int) {
