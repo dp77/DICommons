@@ -55,13 +55,9 @@ fun Activity.appLaunched(appId: String) {
     baseConfig.appId = appId
     if (baseConfig.appRunCount == 0) {
         baseConfig.wasOrangeIconChecked = true
-        checkAppIconColor()
     } else if (!baseConfig.wasOrangeIconChecked) {
         baseConfig.wasOrangeIconChecked = true
         if (baseConfig.appIconColor != APP_ICON_ORIGINAL) {
-            getAppIconColors().forEachIndexed { index, color ->
-                toggleAppIconColor(appId, index, color, false)
-            }
 
             val defaultClassName = "${baseConfig.appId.removeSuffix(".debug")}.activities.SplashActivity"
             packageManager.setComponentEnabledSetting(
