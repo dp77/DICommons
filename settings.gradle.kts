@@ -14,6 +14,6 @@ dependencyResolutionManagement {
         maven { setUrl("https://artifactory-external.vkpartner.ru/artifactory/maven") }
     }
 }
-rootProject.name = "DICommonsStable"
+rootProject.name = "DICommonsBeta"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":commons", ":samples", ":strings")
