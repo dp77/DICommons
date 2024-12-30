@@ -36,13 +36,6 @@ fun ComponentActivity.appLaunchedCompose(
                 PackageManager.DONT_KILL_APP
             )
 
-            val orangeClassName = "${baseConfig.appId.removeSuffix(".debug")}.activities.SplashActivity.Original"
-            packageManager.setComponentEnabledSetting(
-                ComponentName(baseConfig.appId, orangeClassName),
-                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                PackageManager.DONT_KILL_APP
-            )
-
             baseConfig.appIconColor = APP_ICON_ORIGINAL
             baseConfig.lastIconColor = APP_ICON_ORIGINAL
         }
