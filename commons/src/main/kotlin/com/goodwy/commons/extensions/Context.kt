@@ -30,6 +30,7 @@ import android.provider.Settings
 import android.telecom.TelecomManager
 import android.telephony.PhoneNumberUtils
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.accessibility.AccessibilityManager
@@ -969,9 +970,9 @@ fun Context.getCornerRadiusBig() = resources.getDimension(R.dimen.rounded_corner
 
 // we need the Default Dialer functionality only in Simple Dialer and in Simple Contacts for now
 fun Context.isDefaultDialer(): Boolean {
-    return if (!packageName.startsWith("com.di.dialer") || !packageName.startsWith("com.di.contacts")) {
+    return if (!packageName.startsWith("com.di.dialer")) {
         true
-    } else if ((packageName.startsWith("com.di.dialer") || !packageName.startsWith("com.di.contacts")) && isQPlus()) {
+    } else if ((packageName.startsWith("com.di.dialer")) && isQPlus()) {
         val roleManager = getSystemService(RoleManager::class.java)
         roleManager!!.isRoleAvailable(RoleManager.ROLE_DIALER) && roleManager.isRoleHeld(RoleManager.ROLE_DIALER)
     } else {
