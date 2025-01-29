@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_primary">@color/primary</color> <!--@color/indigo_600--> <!--@color/md_blue_600-->
-    <color name="color_primary_dark">@color/indigo_500</color> <!--@color/md_blue_800-->
+    <color name="color_primary">@color/green</color> <!--@color/indigo_600--> <!--@color/md_blue_600-->
+    <color name="color_primary_dark">@color/green</color> <!--@color/md_blue_800-->
     <color name="color_accent">@color/color_primary</color>
     <color name="white">#FFFFFFFF</color>
-
+    <color name="green">#4CB056</color>
     <color name="pressed_item_foreground">#08000000</color>
     <color name="activated_item_foreground">#44666666</color> <!--#44888888 bar color-->
     <color name="button_no_pressed_bg">#FF666666</color>
@@ -42,14 +42,14 @@
 
     <!-- icon apps colors -->
     <color name="ic_dialer">#FF15B76C</color>
-    <color name="ic_contacts">#FF405B98</color>
-    <color name="ic_messages">#FF0D81DE</color>
+    <color name="ic_contacts">@color/green</color>
+    <color name="ic_messages">@color/green</color>
 
     <!-- iOS colors -->
     <color name="red_missed">#FFEB5545</color>
 
     <!-- My Customization -->
-    <color name="primary">#FF5589F1</color> <!-- -11171343-->
+    <color name="primary">@color/green</color> <!-- -11171343-->
     <color name="dialog_background_color">#03FFFFFF</color>
 
     <!-- Default values -->
