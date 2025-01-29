@@ -8,7 +8,7 @@ plugins {
     `maven-publish`
 }
 
-group = "com.goodwy"
+group = "com.di"
 version = "6.0.0"
 
 android {

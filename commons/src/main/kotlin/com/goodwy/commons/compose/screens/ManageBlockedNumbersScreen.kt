@@ -626,6 +626,7 @@ private fun LazyListScope.emptyBlockedNumbers(
             OutlinedButton(onClick = addABlockedNumber) {
                 Text(
                     text = stringResource(id = R.string.add_a_blocked_number),
+                    color = Color.Green
                 )
             }
         }
